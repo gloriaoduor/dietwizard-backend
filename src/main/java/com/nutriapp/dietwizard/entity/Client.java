@@ -1,20 +1,27 @@
 package com.nutriapp.dietwizard.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.Data;
 
+import java.util.List;
+
+@Data
 @Entity
 public class Client {
     @Id
     @GeneratedValue
-    private Long id;
+    private Long clientId;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    private String clientName;
+    private Integer age;
+    private String sex;
+    private Float height;
+    private Float weight;
+    private String activityLevel;
 
-    public Long getId() {
-        return id;
-    }
+    @ManyToOne
+    private User user;
+
+    @OneToMany
+    private List<HealthRecord> healthRecords;
 }
